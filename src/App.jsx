@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 
 // ── LOGO IMAGE (actual uploaded AM logo) ─────────────────────────────────────
 // Place your logo file as: /public/logo.png  (or update LOGO_SRC to match your setup)
-const LOGO_SRC = "/public/logo.png";
+const LOGO_SRC = "/logo.png";
 
 const AMLogoSVG = ({ size = 40 }) => (
   <img
