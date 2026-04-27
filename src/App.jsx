@@ -402,11 +402,11 @@ function BlogDetail({ blog, onBack, onLike, likedIds, dark, blogs, setBlogs }) {
 // ── ABOUT PAGE ───────────────────────────────────────────────────────────────
 function AboutPage({ dark }) {
   const socials = [
-    { name: "Twitter / X", icon: <Icon.Twitter />, url: "https://twitter.com/", color: "#000" },
-    { name: "Instagram", icon: <Icon.Instagram />, url: "https://instagram.com/", color: "#E1306C" },
-    { name: "LinkedIn", icon: <Icon.LinkedIn />, url: "https://linkedin.com/in/", color: "#0A66C2" },
-    { name: "GitHub", icon: <Icon.GitHub />, url: "https://github.com/", color: dark ? "#e0e0e0" : "#24292e" },
-    { name: "Portfolio", icon: <Icon.Globe />, url: "https://amblog.in", color: "#2E6FA3" },
+    { name: "Twitter / X", icon: <Icon.Twitter />, url: "https://x.com/abhishekmhatre_", color: "#000" },
+    { name: "Instagram", icon: <Icon.Instagram />, url: "https://www.instagram.com/abhi._mhatre/", color: "#E1306C" },
+    { name: "LinkedIn", icon: <Icon.LinkedIn />, url: "https://www.linkedin.com/in/abhishekpmhatre/", color: "#0A66C2" },
+    { name: "GitHub", icon: <Icon.GitHub />, url: "https://github.com/Abhishek-MH55", color: dark ? "#e0e0e0" : "#24292e" },
+    { name: "Portfolio", icon: <Icon.Globe />, url: "https://abhishek-mhatre.vercel.app/", color: "#8519a0" },
   ];
   return (
     <div style={{ maxWidth: 760, margin: "0 auto", padding: "0 1rem" }}>
@@ -420,9 +420,9 @@ function AboutPage({ dark }) {
 
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 24, marginBottom: "3rem" }}>
         <div style={{ background: dark ? "#16213e" : "#fff", border: `1px solid ${dark ? "#2a2a4a" : "#ebebeb"}`, borderRadius: 20, padding: "2rem" }}>
-          <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.3rem", fontWeight: 700, color: dark ? "#f0f0f0" : "#1a1a2e", marginBottom: "1rem" }}>Hello, I'm AM 👋</h3>
+          <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.3rem", fontWeight: 700, color: dark ? "#f0f0f0" : "#1a1a2e", marginBottom: "1rem" }}>Hello, I'm Abhishek Mhatre 👋</h3>
           <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 15, lineHeight: 1.8, color: dark ? "#b0b0c8" : "#555", marginBottom: "1rem" }}>
-            I'm a writer, designer, and developer based in Maharashtra, India. I write about technology, design, culture, and the intersection of ideas — in both English and Marathi.
+            I'm a writer, designer, and Integration developer based in Mumbai, India. Curreny working for French Client in Paris. I write about technology, design, culture, and the intersection of ideas — in both English and Marathi.
           </p>
           <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 15, lineHeight: 1.8, color: dark ? "#b0b0c8" : "#555" }}>
             This blog is my space to think out loud, share stories, and connect with readers across languages and borders.
