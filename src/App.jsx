@@ -209,10 +209,10 @@ const Icon = {
 // ── SHARE MODAL ──────────────────────────────────────────────────────────────
 function ShareModal({ blog, onClose, dark }) {
   const origin = typeof window !== "undefined" ? window.location.origin : "";
-  const url = `${origin}/blog/${blog.id}`;
+  const path = typeof window !== "undefined" ? window.location.pathname.replace(/\/$/, "") : "";
+  const url = `${origin}${path}?blog=${blog.id}`;
   const text = encodeURIComponent(blog.title);
   const [copied, setCopied] = useState(false);
-
 
   const platforms = [
     { name: "WhatsApp", icon: <Icon.Whatsapp />, color: "#25D366", href: `https://wa.me/?text=${text}%20${encodeURIComponent(url)}` },
@@ -404,11 +404,11 @@ function BlogDetail({ blog, onBack, onLike, likedIds, dark, blogs, setBlogs }) {
 // ── ABOUT PAGE ───────────────────────────────────────────────────────────────
 function AboutPage({ dark }) {
   const socials = [
-    { name: "Twitter / X", icon: <Icon.Twitter />, url: "https://x.com/abhishekmhatre_", color: "#000" },
-    { name: "Instagram", icon: <Icon.Instagram />, url: "https://www.instagram.com/abhi._mhatre/", color: "#E1306C" },
-    { name: "LinkedIn", icon: <Icon.LinkedIn />, url: "https://www.linkedin.com/in/abhishekpmhatre/", color: "#0A66C2" },
-    { name: "GitHub", icon: <Icon.GitHub />, url: "https://github.com/Abhishek-MH55", color: dark ? "#e0e0e0" : "#24292e" },
-    { name: "Portfolio", icon: <Icon.Globe />, url: "https://abhishek-mhatre.vercel.app/", color: "#8519a0" },
+    { name: "Twitter / X", icon: <Icon.Twitter />, url: "https://twitter.com/", color: "#000" },
+    { name: "Instagram", icon: <Icon.Instagram />, url: "https://instagram.com/", color: "#E1306C" },
+    { name: "LinkedIn", icon: <Icon.LinkedIn />, url: "https://linkedin.com/in/", color: "#0A66C2" },
+    { name: "GitHub", icon: <Icon.GitHub />, url: "https://github.com/", color: dark ? "#e0e0e0" : "#24292e" },
+    { name: "Portfolio", icon: <Icon.Globe />, url: "https://amblog.in", color: "#2E6FA3" },
   ];
   return (
     <div style={{ maxWidth: 760, margin: "0 auto", padding: "0 1rem" }}>
@@ -422,9 +422,9 @@ function AboutPage({ dark }) {
 
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 24, marginBottom: "3rem" }}>
         <div style={{ background: dark ? "#16213e" : "#fff", border: `1px solid ${dark ? "#2a2a4a" : "#ebebeb"}`, borderRadius: 20, padding: "2rem" }}>
-          <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.3rem", fontWeight: 700, color: dark ? "#f0f0f0" : "#1a1a2e", marginBottom: "1rem" }}>Hello, I'm Abhishek Mhatre 👋</h3>
+          <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.3rem", fontWeight: 700, color: dark ? "#f0f0f0" : "#1a1a2e", marginBottom: "1rem" }}>Hello, I'm AM 👋</h3>
           <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 15, lineHeight: 1.8, color: dark ? "#b0b0c8" : "#555", marginBottom: "1rem" }}>
-            I'm a writer, designer, and Integration developer based in Mumbai, India. Curreny working for French Client in Paris. I write about technology, design, culture, and the intersection of ideas — in both English and Marathi.
+            I'm a writer, designer, and developer based in Maharashtra, India. I write about technology, design, culture, and the intersection of ideas — in both English and Marathi.
           </p>
           <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 15, lineHeight: 1.8, color: dark ? "#b0b0c8" : "#555" }}>
             This blog is my space to think out loud, share stories, and connect with readers across languages and borders.
@@ -576,6 +576,26 @@ export default function App() {
   const [adminAuth, setAdminAuth] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
+
+  // ── Deep-link: open blog from ?blog=ID in URL ──
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const blogId = params.get("blog");
+    if (blogId) {
+      const found = INITIAL_BLOGS.find(b => String(b.id) === blogId);
+      if (found) { setActiveBlog(found); setPage("blog"); }
+    }
+  }, []);
+
+  // ── Update URL query param when blog opens/closes ──
+  useEffect(() => {
+    if (activeBlog) {
+      const newUrl = `${window.location.pathname}?blog=${activeBlog.id}`;
+      window.history.replaceState(null, "", newUrl);
+    } else {
+      window.history.replaceState(null, "", window.location.pathname);
+    }
+  }, [activeBlog]);
 
   const bg = dark ? "#0a0e1a" : "#faf9f7";
   const textPrimary = dark ? "#f5f5f5" : "#1a1a2e";
