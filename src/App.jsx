@@ -208,9 +208,11 @@ const Icon = {
 
 // ── SHARE MODAL ──────────────────────────────────────────────────────────────
 function ShareModal({ blog, onClose, dark }) {
-  const url = `https://amblog.in/blog/${blog.id}`;
+  const origin = typeof window !== "undefined" ? window.location.origin : "";
+  const url = `${origin}/blog/${blog.id}`;
   const text = encodeURIComponent(blog.title);
   const [copied, setCopied] = useState(false);
+
 
   const platforms = [
     { name: "WhatsApp", icon: <Icon.Whatsapp />, color: "#25D366", href: `https://wa.me/?text=${text}%20${encodeURIComponent(url)}` },
